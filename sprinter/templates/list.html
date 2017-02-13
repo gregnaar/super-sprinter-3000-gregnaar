@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.logged_in %}
+        <h1>User Story Manager</h1>
+        <p><a href=/story>
+            <dd><input type="button" value="Add New User Story" id="add_new_story">
+        </a></p>
+        <table class="entries" border="1">
+            <tr>
+                <td> id</td>
+                <td> Story Title</td>
+                <td> User Story</td>
+                <td> Acceptance Criteria</td>
+                <td> Business Value</td>
+                <td> Time Estimation</td>
+                <td> Story Status</td>
+
+            </tr>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.id }}</td>
+                    <td>{{ entry.title }}</td>
+                    <td>{{ entry.text|safe }}</td>
+                    <td>{{ entry.acc_crit|safe }}</td>
+                    <td>{{ entry.bus_value }}</td>
+                    <td>{{ entry.estimation }}</td>
+                    <td>{{ entry.status|safe }}</td>
+                    <td><p><a href="/story/update/{{ entry.id }}"><img
+                    src="https://maxcdn.icons8.com/Share/icon/Editing//pencil1600.png"
+                    width="25" height="25" alt="Update Story" id="update_pencil"></a></p></td>
+                    <td><p><a href="/story/delete/{{ entry.id }}"><img
+                    src="http://www.dirtyandthirty.com/wp-content/uploads/2011/10/garbage-can1.jpg"
+                    width="25" height="25" alt="Delete Story" id="delete_bin"></a></p></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

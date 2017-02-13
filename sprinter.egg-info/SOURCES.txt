@@ -1,0 +1,14 @@
+MANIFEST.in
+sprinter/__init__.py
+sprinter/connectdatabase.py
+sprinter/models.py
+sprinter/sprinter.py
+sprinter.egg-info/PKG-INFO
+sprinter.egg-info/SOURCES.txt
+sprinter.egg-info/dependency_links.txt
+sprinter.egg-info/requires.txt
+sprinter.egg-info/top_level.txt
+sprinter/static/style.css
+sprinter/templates/layout.html
+sprinter/templates/login.html
+sprinter/templates/show_entries.html

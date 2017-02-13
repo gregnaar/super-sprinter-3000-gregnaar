@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.logged_in %}
+        {% if entries %}
+                {% for entry in entries %}
+                    <form action="{{ url_for('update_entry', story_id = entry.id) }}" method="post" class="add-entry">
+                    <h1>User story Manager - Update Story</h1>
+                    <dl>
+                        <p>
+                            <dt>Story Title:
+                        <dd><input type="text" size="30" name="title" id="title" value={{ entry.title }}>
+                        </p>
+                        <p>
+                            <dt>User Story:
+                        <dd><textarea name="text" rows="5" cols="40" id="text">{{ entry.text|safe }}</textarea>
+                        </p>
+                        <p>
+                            <dt>Acceptance Criteria:
+                        <dd><textarea name="acc_crit" rows="5" cols="40"
+                                      id="acc_crit">{{ entry.acc_crit|safe }}</textarea>
+                        </p>
+                        <p>
+                            <dt>Business Value
+                            <div class="container">
+                                <input class="quantity" type="number" name="bus_value" id="business_value" step="100"
+                                       min="100" max="1500" value={{ entry.bus_value }} required/>
+                            </div>
+                        </p>
+                        <p>
+                            <dt>Estimation (h)
+                            <div class="container">
+                                <input class="quantity" type="number" name="estimation" id="estimation" step="0.5"
+                                       min="0.5"
+                                       max="40" value={{ entry.estimation }} required/>
+                        </p>
+                        </div>
+                        <dt>Status:
+                        <p><select name="status" id="status" value={{ entry.status }}>
+                            <option selected>Planning</option>
+                            <option>To Do</option>
+                            <option>In Progress</option>
+                            <option>Review</option>
+                            <option>Done</option>
+                        </select></p>
+
+                        <p>
+                        <dd><input type=submit value=Update name="update" id="update" >
+                        </p>
+                    </dl>
+                    </form>
+                {% endfor %}
+
+            {% else %}
+                <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+                    <h1>User story Manager - Add new Story</h1>
+
+                    <dl>
+                        <p>
+                            <dt>Story Title:
+                        <dd><input type="text" size="30" name="title" id="title">
+                        </p>
+                        <p>
+                            <dt>User Story:
+                        <dd><textarea name="text" rows="5" cols="40" id="text"></textarea>
+                        </p>
+                        <p>
+                            <dt>Acceptance Criteria:
+                        <dd><textarea name="acc_crit" rows="5" cols="40" id="acc_crit"></textarea>
+                        </p>
+                        <p>
+                            <dt>Business Value
+                            <div class="container">
+                                <input class="quantity" type="number" name="bus_value" id="business_value" step="100"
+                                       min="100"
+                                       max="1500" value="100" required/>
+                            </div>
+                        </p>
+                        <p>
+                            <dt>Estimation (h)
+                            <div class="container">
+                                <input class="quantity" type="number" name="estimation" id="estimation" step="0.5"
+                                       min="0.5"
+                                       max="40" value="1" required/>
+                        </p>
+                        </div>
+                        <dt>Status:
+                        <p><select name="status" id="status">
+                            <option selected>Planning</option>
+                            <option>To Do</option>
+                            <option>In Progress</option>
+                            <option>Review</option>
+                            <option>Done</option>
+                        </select></p>
+
+                        <p>
+                        <dd><input type=submit value=Save name="save" id="save">
+                        </p>
+                    </dl>
+                </form>
+            {% endif %}
+    {% endif %}
+{% endblock %}
