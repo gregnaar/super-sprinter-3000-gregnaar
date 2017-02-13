@@ -9,7 +9,7 @@
 
 5. If it runs without error (means: no red text), run these:
 
-`export FLASK_APP=flaskr`
+`export FLASK_APP=sprinter`
 
 `export FLASK_DEBUG=true`
 
@@ -24,3 +24,5 @@
 Ideally this should start the server, and now you can reach it from your browser on this address:
 
 [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+Thank You Laci for providing the foundations of this README, and repo. :)
