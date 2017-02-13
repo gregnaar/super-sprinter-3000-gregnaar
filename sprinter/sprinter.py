@@ -6,10 +6,9 @@ from sprinter.models import Entries
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash, current_app
 
-app = Flask(__name__)  # create the application instance :)
-app.config.from_object(__name__)  # load config from this file , flaskr.py
+app = Flask(__name__)
+app.config.from_object(__name__)
 
-# Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'flaskr.db'),
     SECRET_KEY='development key',
@@ -74,13 +73,6 @@ def add_story():
 
 @app.route('/story/update/<story_id>', methods=['GET', 'POST'])
 def update_story(story_id):
-    '''entries = Entries.update(title=request.form['title'],
-                   text=request.form['text'],
-                   acc_crit=request.form['acc_crit'],
-                   bus_value=request.form['bus_value'],
-                   estimation=request.form['estimation'],
-                   status=request.form['status']).where(Entries.id == story_id)
-    entries.execute()'''
     entries = Entries.select().where(Entries.id == story_id)
     return render_template('form.html', entries=entries)
 
