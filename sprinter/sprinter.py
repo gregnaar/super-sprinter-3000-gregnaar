@@ -67,8 +67,7 @@ def update_entry(story_id):
 
 @app.route('/story')
 def add_story():
-    entries = Entries.select().order_by(Entries.id.desc())
-    return render_template('form.html', entries=entries)
+    return render_template('form.html')
 
 
 @app.route('/story/update/<story_id>', methods=['GET', 'POST'])
